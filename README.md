@@ -1,166 +1,205 @@
-#Postura de Seguridad & Ciberseguridad Informática
+# 🛡️ Postura de Seguridad & Ciberseguridad Informática
 
-Descripción
+## 📘 Descripción General
+Este repositorio documenta la **postura de seguridad de la organización**, incluyendo políticas, gestión de riesgos, controles técnicos, arquitecturas seguras y procedimientos de respuesta ante incidentes.  
+Su propósito es **centralizar la estrategia de seguridad**, mejorar la trazabilidad entre riesgos y controles, y facilitar auditorías o certificaciones (ISO 27001, NIST, CIS, OWASP, MITRE ATT&CK).
 
-Repositorio que centraliza la postura de seguridad de la organización: política, modelos de control, procesos de gestión de riesgos, playbooks operativos, métricas (KPI/KRI) y guías para implementar controles técnicos y organizacionales. Pensado para equipos de seguridad (SOC, IR, GRC, DevSecOps) y para auditores internos/external.
 
-Objetivos
 
-Definir una postura de seguridad clara, reproducible y alineada con marcos reconocidos.
+## 🎯 Objetivos
+- Definir una **postura de seguridad sólida, escalable y medible**.  
+- Estandarizar políticas, procedimientos y controles técnicos.  
+- Integrar la seguridad dentro del ciclo de vida del software (**DevSecOps**).  
+- Proveer **plantillas y guías reutilizables** para SOC, IR y auditorías.  
+- Medir el desempeño mediante indicadores (**KPI/KRI**).
 
-Proveer artefactos reutilizables: políticas, listas de control, matrices de riesgo, diagramas de arquitectura segura, y playbooks de respuesta a incidentes.
 
-Facilitar la trazabilidad entre riesgos, controles y evidencias (para auditorías y certificaciones).
 
+## 🧩 Alcance
+Aplica a todos los **activos, procesos y servicios críticos** de la organización, incluyendo entornos **on-premise, cloud y SaaS**.
 
-Alcance
+### Incluye:
+- Clasificación y valoración de activos.  
+- Flujos de datos y puntos de exposición.  
+- Roles, responsabilidades y cadena de escalamiento.  
+- Integración con marcos de referencia: **NIST CSF**, **CIS Controls**, **MITRE ATT&CK**, **OWASP ASVS**.
 
-Incluye activos, procesos y servicios dentro del perímetro definido por la organización (on-premises, cloud, servicios SaaS). Se documenta:
 
-Activos críticos y su clasificación.
 
-Flujos de datos y superficies de exposición.
+## ⚙️ Principios de Diseño
+1. **Riesgo primero:** decisiones basadas en análisis de riesgo cuantitativo/cualitativo.  
+2. **Defensa en profundidad:** controles redundantes (físicos, técnicos, administrativos).  
+3. **Zero Trust:** segmentación, autenticación robusta y principio de menor privilegio.  
+4. **Telemetry-first:** todo evento relevante debe ser medible y correlacionable.  
+5. **Automatización segura:** seguridad integrada en pipelines (SAST, DAST, SCA).
 
-Roles y responsabilidades.
 
 
-Principios de diseño
+## 📂 Estructura del Repositorio
+```bash
+postura-seguridad/
+├── README.md
+├── docs/
+│   ├── politica_seguridad.md
+│   ├── gestion_riesgos.md
+│   ├── runbooks/
+│   │   ├── ir_playbook.md
+│   │   └── phishing_playbook.md
+│   └── architectures/
+│       └── network-segmentation.drawio
+├── controls/
+│   ├── cis_controls_mapping.md
+│   ├── owasp_mapping.md
+│   └── baseline_hardening.md
+├── metrics/
+│   └── kpi_kri.xlsx
+├── scripts/
+│   └── inventory_discovery.py
+└── templates/
+    ├── risk_register_template.xlsx
+    └── policy_template.md
 
-1. Riesgo primero: decisiones guiadas por análisis de riesgo cuantitativo/cualitativo.
 
 
-2. Defensa en profundidad: controles físicos, técnicos y administrativos redundantes.
 
+🧠 Modelo de Postura de Seguridad
 
-3. Zero Trust por defecto: autenticación y autorización robusta, segmentación y principio de menor privilegio.
+🔹 1. Gobernanza
 
+Política de seguridad corporativa y alcance del SGSI.
 
-4. Telemetry-first: instrumentar para detectar y correlacionar actividad maliciosa.
+Comité de seguridad (RACI documentado).
 
+Revisión ejecutiva trimestral de riesgos.
 
-5. Automatización segura: IaC verificada, pipelines con gates de seguridad (SCA, SAST, DAST).
 
+🔹 2. Gestión de Riesgos
 
+Inventario y clasificación de activos.
 
-Estructura del repositorio
+Evaluación: probabilidad × impacto.
 
-/ (root)
-├─ README.md                # Este documento
-├─ docs/
-│  ├─ politica_seguridad.md
-│  ├─ gestion_riesgos.md
-│  ├─ runbooks/
-│  │  ├─ ir_playbook.md
-│  │  └─ phishing_playbook.md
-│  └─ architectures/
-│     └─ network-segmentation.drawio
-├─ controls/
-│  ├─ cis_controls_mapping.md
-│  ├─ owasp_mapping.md
-│  └─ baseline_hardening.md
-├─ metrics/
-│  └─ kpi_kri.xlsx
-├─ scripts/
-│  └─ inventory_discovery.py
-└─ templates/
-   ├─ risk_register_template.xlsx
-   └─ policy_template.md
+Plan de tratamiento: aceptar, mitigar, transferir o evitar.
 
-Modelo de Postura de Seguridad (resumen técnico)
 
-1) Gobernanza
+🔹 3. Controles Técnicos
 
-Política de seguridad corporativa y alcance del SGSI (si aplica ISO27001).
+Tipo	Ejemplos
 
-Comité de seguridad y RACI documentado.
+Preventivos	Hardening, MFA, WAF, segmentación de red.
+Detectivos	SIEM, EDR, IDS/IPS, auditoría de logs.
+Correctivos	Parches, respuesta ante incidentes, recuperación.
 
-Revisión ejecutiva trimestral de riesgo.
 
+🔹 4. Seguridad en el Ciclo de Vida del Software
 
-2) Gestión de Riesgos
+Análisis SAST / DAST / SCA en pipelines CI/CD.
 
-Inventario de activos y clasificación de datos.
+Modelado de amenazas (STRIDE / OWASP ASVS).
 
-Análisis de riesgos (probabilidad x impacto).
+Auditorías periódicas de dependencias y librerías.
 
-Tratamiento: aceptar, mitigar, transferir, evitar.
 
+🔹 5. Respuesta ante Incidentes & Threat Hunting
 
-3) Controles (mapeo rápido)
+Playbooks detallados: phishing, ransomware, insider threats.
 
-Preventivos: hardening, control de acceso, WAF, MFA, segmentación de red.
+Mapeo de tácticas con MITRE ATT&CK.
 
-Detectivos: logging centralizado, EDR/NGAV, IDS/IPS, análisis de red, alertas SIEM.
+Escalamiento y comunicación definidos por niveles de impacto.
 
-Correctivos: procesos de parcheo, playbooks de respuesta, recuperación y comunicación.
 
+🔹 6. Métricas (KPI / KRI)
 
-4) Seguridad en el ciclo de vida del software
+Indicador	Descripción
 
-Integración de SAST/DAST/SCA en CI pipelines.
+MTTD	Tiempo medio de detección.
+MTTR	Tiempo medio de respuesta.
+% de parches aplicados	Nivel de cumplimiento de actualización.
+Cobertura EDR	Porcentaje de endpoints protegidos.
 
-Revisión de dependencias y políticas de actualización.
 
-Modelado de amenazas (STRIDE/OWASP ASVS) en diseño.
 
 
-5) Respuesta a incidentes & Threat Hunting
 
-Runbooks claros: contención, erradicación, recuperación, lecciones aprendidas.
+🚀 Cómo Usar el Repositorio
 
-Uso de MITRE ATT&CK para mapear detecciones y gaps.
+1. Clonar el repositorio:
 
-Tabla de escalamiento y comunicación (legal, PR, clientes).
+git clone https://github.com/<org>/postura-seguridad.git
 
 
-6) Medición
+2. Completar las plantillas en docs/ y templates/.
 
-Mínimo conjunto de KPIs: MTTR, MTTD, % parches aplicados, % endpoints con EDR, tiempo medio de triage.
 
-KRIs para riesgo residual por clasificación de activos.
+3. Ejecutar los scripts de inventario o escaneo (scripts/inventory_discovery.py).
 
 
-Cómo usar este repositorio
+4. Adaptar los controles a tu framework (CIS / NIST / ISO 27001).
 
-1. Clona el repositorio: git clone https://github.com/<org>/postura-seguridad.git
 
+5. Simular incidentes y actualizar los playbooks según resultados.
 
-2. Rellena docs/politica_seguridad.md y templates/risk_register_template.xlsx con tus activos.
 
 
-3. Ejecuta scripts/inventory_discovery.py (revisa y adapta credenciales) para poblar inventarios.
 
 
-4. Mapear controles con tu framework preferido (NIST CSF / CIS / ISO 27001 / OWASP).
 
+📎 Referencias Técnicas
 
-5. Ejecutar simulacros de IR y actualizar runbooks tras cada ejercicio.
+NIST Cybersecurity Framework
 
+MITRE ATT&CK Framework
 
+CIS Controls v8
 
-Mapeos y referencias (implementación práctica)
+OWASP Top 10
 
-Plantilla de mapeo NIST CSF -> Controles técnicos.
+ISO/IEC 27001:2022
 
-Matriz MITRE ATT&CK usada para diseñar detecciones y casos de uso de threat hunting.
 
-Baselines CIS para hardening de OS y containers.
 
-Checklists OWASP para aplicaciones web y APIs.
 
 
-Contribuciones
+👥 Contribuciones
 
-Sigue el flujo GitHub: forks, branches temáticos (feature/*), PRs con descripción técnica y checklist de pruebas. Revisión por pares obligatoria (2 reviewers) para cambios en docs/ y controls/.
+1. Realiza un fork del repositorio.
 
-Licencia
 
-Licencia MIT (o la que prefieras). Incluye archivo LICENSE con detalles.
+2. Crea una rama para tus cambios:
 
-Roadmap
+git checkout -b feature/<nombre>
 
-v0.1: artefactos básicos (política, playbooks, mapeos).
 
-v0.2: integraciones automáticas (CI gates, scanners).
+3. Envía un Pull Request con descripción técnica y checklist.
 
-v1.0: pack de auditoría listo para ISO27001/CIS/SP800-53.
+
+4. Se requieren dos revisores para aprobar cambios críticos.
+
+
+
+
+
+
+📄 Licencia
+
+Distribuido bajo licencia MIT.
+Consulta el archivo LICENSE para más detalles.
+
+
+---
+
+🧭 Roadmap
+
+v0.1: Documentación base (política, riesgos, controles).
+
+v0.2: Automatización CI/CD + escaneo de vulnerabilidades.
+
+v1.0: Pack completo para auditoría ISO 27001 / NIST.
+
+
+
+
+
+📬 Contacto
+[LinkedIn](https://shorturl.at/7VuIp)
